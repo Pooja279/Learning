@@ -5,4 +5,4 @@ document.getElementById('heading').addEventListener('click',function (e) {
     variable=e.offsetX;
     variable=e.clientX;
     console.log(variable);
-});
+}); 
