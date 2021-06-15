@@ -1,46 +1,46 @@
-divelem = document.createElement('div');
-let text;
+// Create a new element
+let divElem = document.createElement('div');
+
+// Add text to that created element
 let val = localStorage.getItem('text');
-
-if(val==null){
-    let text =document.createTextNode("this is text");
-    divelem.appendChild(text);
-}else{
-    text = document.createTextNode(val);
-    divelem.appendChild(text);
+let text;
+if (val==null){
+ text = document.createTextNode('This is my element. click to edit it');
 }
+else{
+    text = document.createTextNode(val);
+}
+divElem.appendChild(text);
+
+// Give element id, style and class
+divElem.setAttribute('id', 'elem');
+divElem.setAttribute('class', 'elem');
+divElem.setAttribute('style', 'border:2px solid black; width: 154px; margin: 34px; padding:23px;');
+
+// Grab the main container
+let container = document.querySelector('.container');
+let first = document.getElementById('myfirst');
 
 
+// Insert the element before element with id first
+container.insertBefore(divElem, first);
 
-divelem.setAttribute('id','elem')
-divelem.setAttribute('class','elem')
-divelem.setAttribute('style','border:2px');
+console.log(divElem, container, first)
 
-console.log(divelem);
-let container = document.querySelector('.container')
-console.log(container);
-let first = document.getElementById('myul');
-console.log(first);
-
-container.insertBefore(divelem,first);
-
-divelem.addEventListener('click',function () {
-    let noTextarea = document.getElementsByClassName('textarea').length
-    if(noTextarea == 0){
-        let html =  elem.innerHTML;
-        divelem.innerHTML =   `<textarea class="textarea  form-control" id="Textarea" rows="3">${html}</textarea>`
-
+// add event listener to the divElem
+divElem.addEventListener('click', function () {
+    let noTextAreas = document.getElementsByClassName('textarea').length;
+    if(noTextAreas ==0){
+    let html = elem.innerHTML;
+    divElem.innerHTML = ` <textarea class="textarea form-control" id="textarea" rows="3"> ${html}</textarea>`;
     }
-    let textarea = document.querySelector('.elem');
-    textarea.addEventListener('blur',function () {
-        elem.innerHTML = textarea.nodeValue;
-        localStorage.setItem('text',textarea.value);
-        
+    //listen for the blur event on textarea
+    let textarea = document.getElementById('textarea');
+    textarea.addEventListener('blur', function() {
+        elem.innerHTML = textarea.value;
+        localStorage.setItem('text', textarea.value);
     })
-   
-    
+});
 
-})
-
-
+ 
 
